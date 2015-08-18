@@ -22,9 +22,12 @@ BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 SECRET_KEY = '-fn(=k)w+(*c&dhhe83h38=5%y(v3vc0x(#e7(z-p1s8q2afc0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG = False
+
+TEMPLATE_DEBUG = DEBUG
+
+ALLOWED_HOSTS = ['ages.gachon.ac.kr']
 
 
 # Application definition
@@ -48,7 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+#    'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'ginseng.urls'
