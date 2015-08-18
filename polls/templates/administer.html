@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block optional_javascript %}	
+<!-- switch -->
+<link rel="stylesheet" href="{% static 'css/jquery.onoff.css' %}" media="screen" />
+
+
+{% endblock %}
+			
+{% block link_navbar %}			
+<li><a href="/"><span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:175%"></span></a></li>
+{% endblock %}
+
+{% block content %}
+<div class="row" style="height:50px"></div>
+<!-- administer -->
+<section id="administer">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h2>administer</h2>
+				<hr class="star-primary">
+			</div>
+		</div>
+					
+		<div class="container">
+			<div class="col-lg-8 col-lg-offset-2">
+				<table class="table table-bordered">
+					<thead>
+						<tr class="active">
+							<th>name</th>
+							<th>마지막 업데이트</th>
+							<th>연결 확인</th>
+							<th>On / Off</th>
+						</tr>
+						<tr>
+							<td>sensor 1</td>
+							<td>2015/01/03</td>
+							<td><button type="button" class="sensor btn btn-primary btn-xs" id="sensor1" onclick="sensorSuccess()">확인하기</button></td>
+							<td><input type="checkbox" id="checkbox#1" checked />
+									<script src="{% static 'js/require.js' %}"></script>
+										<script>
+											require({
+												paths: { jquery: "{% static 'js/jquery'%}" }
+													}, [ 'jquery', "{% static 'js/jquery.onoff.js'%}"] , function( $ ) {
+													$('input[id=checkbox#1]').onoff();
+											});
+										</script>
+							</td>
+						</tr>
+						<tr>
+							<td>sensor 2</td>
+							<td>2014/07/01</td>
+							<td><button type="button" class="sensor btn btn-primary btn-xs" id="sensor2" onclick="sensorFail()">확인하기</button>
+							</td>
+							<td>
+								<input type="checkbox" id="checkbox#2" checked />
+								<script>
+									require({
+										paths: { jquery: "{% static 'js/jquery'%}" }
+										}, [ 'jquery',"{% static 'js/jquery.onoff.js' %}"], function( $ ) {
+										$('input[id=checkbox#2]').onoff();
+									});
+								</script>
+							</td>
+						</tr>
+						<tr>
+							<td>sensor 3</td>
+							<td>2014/05/13</td>
+							<td><button type="button" class="btn btn-primary btn-xs" id="sensor3" onclick="sensorSuccess()">확인하기</button></td>
+							<td><input type="checkbox" id="checkbox#3" checked />
+								<script>
+									require({
+										paths: { jquery: "{% static 'js/jquery'%}" }
+											}, [ 'jquery', "{% static 'js/jquery.onoff.js' %}"], function( $ ) {
+											$('input[id=checkbox#3]').onoff();
+									});
+								</script>
+							</td>
+						</tr>
+						<tr>
+							<td>sensor 4</td>
+							<td>2015/07/31</td>
+							<td><button type="button" class="btn btn-primary btn-xs" id="sensor4" onclick="sensorFail()">확인하기</button></td>
+							<td><input type="checkbox" id="checkbox#4" checked />
+								<script>
+									require({
+										paths: { jquery: "{% static 'js/jquery' %}"}
+										}, [ 'jquery', "{% static 'js/jquery.onoff.js' %}"], function( $ ) {
+										$('input[id=checkbox#4]').onoff();
+									});
+								</script>
+							</td>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</section>
+		
+<!--sensor check-->
+<script>
+	function sensorSuccess(){	
+		alert('센서 연결 확인되었습니다.');
+	}
+	function sensorFail(){
+		alert('센서 연결이 확인되지 않습니다.');
+	}
+</script>
+<script src="{% static 'js/require.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+{% load staticfiles %}
+
+		<meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>인삼공장 프로젝트</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/freelancer.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+ 		<!-- Graph -->
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<link href="{%static 'css/graph.css'%}" rel="stylesheet">
+		<script>
+		$(document).ready(function(){
+			$('#confirm').on("click",function(){
+				x_value = $("#graph_x option:selected").text();
+				y_value = $("#graph_y option:selected").text();
+				startDate = $j("#startDate").datepicker("getDate")
+				endDate = $j("#endDate").datepicker("getDate")
+				$("input[class=checkbox").each(function(){
+								select_sensor = ($(this).val());
+								alert (select_sensor)
+							});
+				alert ((x_value) + (y_value) + (startDate)+ (endDate))
+			});
+		});
+		</script>
+
+ 		<!-- map -->
+		<script src="http://maps.googleapis.com/maps/api/js"></script>
+		<script type="text/javascript" src="{% static 'js/map.js' %}"></script>
+
+		<!-- datepicker-->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>	
+		<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" roll="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <li class="page-scroll"><a class="navbar-brand" href="#page-top">Ginseng</a></li>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+											<a href="#page-top"></a>
+                    </li>
+										<li class="dropdown">
+											<button href="#" class="dropdown-toggle btn btn-link navbar-btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"</span></button>
+											<ul class="dropdown-menu" role="menu" style="text-align : center">
+												<li class="page-scroll"><a href="#about">PROJECT 소개</a></li>
+												<li class="page-scroll"><a href="#portfolio">병해 요인</a></li>
+												<li class="page-scroll"><a href="#map">인삼밭 위치</a></li>
+											</ul>
+										</li>
+										<li class="dropdown">
+											<button href="#" class="dropdown-toggle btn btn-link navbar-btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Graph<span class="caret"</span></button>
+											<ul class="dropdown-menu" style="text-align : center">
+												<li class="page-scroll"><a href="#sensor_graph">SENSOR</a></li>
+												<li class="page-scroll"><a href="#graph">graph</a></li>
+											</ul>
+										</li>
+										<li><a href="#Login" data-toggle="modal" role="button">login</a></li>
+										<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:175%"></span></a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="{% static 'img/profile.png' %}" alt="">
+                    <div class="intro-text">
+                        <span class="name">Ginseng factory</span>
+                        <hr class="star-light">
+												<span class="skills">teamlab2015</span>
+                    </div>
+                </div>
+						</div>
+        </div>
+    </header>
+
+		<!-- About Section -->
+		<section id="about">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h2>About</h2>
+						<hr class="star-primary">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2 text-center">
+						<p>IoT 기술과 통계 분석 기술을 사용하여 인삼재배 공정의 효율화를 추구하는 가천대학교 산업경영공학과와 응용통계학과 학생들의 프로젝트 입니다.</p>
+						<p>라즈베리 파이를 사용한 IoT 기술과 Rstudio를 사용하여 통계 분석을 한 후, D3.js와 Django 등을 사용하여 웹페이지로 시각화합니다.</p>
+					</div>
+			</div>
+		</section>
+		
+		<!-- map Section -->
+		<section class="success" id="map">
+			<div class = "container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h2>Map</h2>
+						<hr class="star-light">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3"></div>
+					<div class="col-lg-6">
+						<div class="container">
+							<div id="googleMap" style="min-width:250px; max-width:500px; min-height:380px;"></div>
+						</div>
+					</div>
+					<div class="col-lg-3"></div>
+				</div>
+			</div>
+		</section>
+
+		
+		<!-- Portfolio Grid Section -->
+		<section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>통계 분석</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row"/>
+						<div class="row">
+							<p style="text-align: center">수집된 정보를 데이터 마이닝 기법을 활용하여 회귀분석을 통해 함수관계를 산출합니다.</p>
+                <div class="col-sm-4">
+									<h3 class="well" style="text-align: center">실험 설계</h3>
+									<p>토양 산도, 토양 습도, 토양 염분, 기온 등의 요인은 인삼 질병 발생률에 영향을 미친다고 가정합니다.</p>
+								</div>
+                <div class="col-sm-4 portfolio-item">
+									<h3 class="well" style="text-align: center">자료 분석</h3>
+									<p>데이터 수집 후 기초 통계량을 이용하여 단위를 표준화 합니다.</p>
+								</div>
+                <div class="col-sm-4 portfolio-item">
+									<h3 class="well" style="text-align: center">결과 해석</h3>
+									<p>함수 관계를 시각화하고 이해하여 인삼의 질병에 대한 설명과 최적 재배 조건 등을 예측, 피드백합니다.</p>
+                </div>
+								<div class="col-lg-8 col-lg-offset-2">
+									<h3 class="well" style="text-align:center">주요 통계 기법</h3>
+									<ul style="list-style-type:circle;">
+										<li/><p>주성분 분석 : 요인의 상관계수행렬을 이용하여 상관계수가 높은 변수끼리 묶어 주성분을 만들어 자원을 축소합니다.</p>
+										<li/><p>다중 회귀 분석 : 습도(X1), 토양 산도(X2), 토양 성분(X3), 기후(X4)를 이용하여 인삼 질병(Y)과의 함수관계를 밝혀냅니다.</p>
+									</ul>
+								</div>
+						</div>
+        </div>
+    </section>
+
+		<!--sensor graph-->
+		<section id="sensor_graph">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h2>SENSOR GRAPH</h2>
+						<hr class="star-primary">
+					</div>
+				</div>
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<div class="row">
+						<svg id="lineGraph"></svg>
+						<script src="{% static 'js/lineGraph.js'%}"></script>
+					</div>
+					<div class="container">
+						<button type="submit" class="btn btn-default" disabled>기 온</button>
+						<button type="submit" class="btn btn-primary">습 도</button>
+						<button type="submit" class="btn btn-default">토양 수분</button>
+						<button type="submit" class="btn btn-primary">광 도</button>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="container">
+						<form role="form">
+							<div class="checkbox">
+								<label><input type="checkbox" value="">SENSOR 1</label>
+							</div>	
+							<div class="checkbox">
+								<label><input type="checkbox" value="">SENSOR 2</label>
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" value="">SENSOR 3</label>
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" value="">SENSOR 4</label>
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" value="">SENSOR 5</label>
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" value="">SENSOR 6</label>
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" value="">SENSOR 7</label>
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" value="">SENSOR 8</label>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--graph-->
+		<section id="graph">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h2>GRAPH</h2>
+						<hr class="star-primary">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2 text-center" >
+						<form role="form" id="sensor_check">
+							<div class="checkbox">
+								<label><input type="checkbox" class="checkbox" value="sensor_1">SENSOR 1</label>
+								<label><input type="checkbox" class="checkbox" value="sensor_2">SENSOR 2</label>
+								<label><input type="checkbox" class="checkbox" value="sensor_3">SENSOR 3</label>
+								<label><input type="checkbox" class="checkbox" value="sensor_4">SENSOR 4</label>
+							</div>
+						</form>
+						<span id="start_date">
+							<label>start &nbsp;:&nbsp;</label>
+							<input type="text" id="startDate" style="width:100px; text-align:center">
+							<script>
+								var $j = jQuery.noConflict();
+								$j("#startDate").datepicker();
+							//	$j("#startDate").datepicker("setDate", new Date());
+								$j("#startDate").on("change", function(){
+									//var value__ = $j("#startDate").datepicker({dateFormat:"dd-mm-yy"});
+									//var value = $("#startDate").val()
+									var startDate = $j("#startDate").datepicker("getDate")
+									alert (startDate)
+								});
+							</script>
+						</span>
+						<span id="end_date">
+							<label>&nbsp;end&nbsp;:&nbsp;</label>
+							<input type="text" id="endDate" style="width:100px; text-align:center">
+							<script>
+								var $j = jQuery.noConflict();
+								$j("#endDate").datepicker();
+
+								$j("#endDate").on("change", function(){
+									var endDate = $j("#endDate").datepicker("getDate")
+									alert (endDate)
+								});
+							</script>
+						</span>
+						<span id="graph_x">
+							<label>&nbsp;가로축&nbsp;:&nbsp;</label>
+							<select class="btn btn-default btn-xs" id="graph_x">						
+								<option value="temperature" selected>기온</option>
+								<option value="humidity">습도</option>
+								<option value="soil_moisture">토양 수분</option>
+								<option value="intensity">광도</option>
+							</select>
+						</span>
+						<span id="graph_y">
+							<label>&nbsp;세로축&nbsp;:&nbsp;</label>
+							<select class="btn btn-default btn-xs" id="graph_y">
+								<option value="temperature" selected>기온</option>
+								<option value="humidity">습도</option>
+								<option value="soil_moisture">토양 수분</option>
+								<option value="intensity">광도</option>
+							</select>
+						</span>
+						<span id="confirm">
+							<label>&nbsp;적용&nbsp;:&nbsp;</label>
+							<input type="submit" id="confirm" class="btn btn-primary btn-xs" value="&nbsp;&nbsp;확&nbsp;&nbsp;인&nbsp;&nbsp;">
+						</span>
+							<p style="font-size:5pt"></p>
+								<svg id="scatterGram"></svg>
+								<script type="text/javascript" src="{% static 'js/scatterGram.js' %}"></script>
+					</div>
+				</div>
+			</div>
+		</section>
+
+    <!-- Contact Section -->
+		<section id="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h2>Contact Me</h2>
+						<hr class="star-primary">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						<svg id="myGraph"></svg>
+						<button id="prev">이전</button>
+						<button id="next">다음</button>
+						<div class="checkbox">`
+							<label><input type="checkbox" class="sensor" id="sensor_1" value="item1">SENSOR 1</label>
+							<label><input type="checkbox" class="sensor" id="sensor_2" value="item2">SENSOR 2</label>
+							<label><input type="checkbox" class="sensor" id="sensor_3" value="item3">SENSOR 3</label>
+						</div>
+
+						<div class="container">
+							<button type="submit" class="import_data btn btn-default" id="graph_data">기 온</button>
+							<button type="submit" class="import_data btn btn-primary" id="test_data">습 도</button>
+						</div>
+						<script type="text/javascript" src="{% static 'js/sample.js' %}"></script>
+					</div>
+				</div>
+			</div>
+    </section>
+
+		<!-- login modal -->
+		<div id="Login" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			
+			<div class="modal-header">
+				<div class="form-inline">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+					<h3 id="myModalLabel">로그인</h3>
+				</div>
+			</div>
+			
+			<div class="modal-body">
+				<form action="" method="post" accept-charset="UTF-8">
+					<input id="user_username" type="text" name="username" style="width:250px;" placeholder="아이디"/>
+					<input id="user_userpassword" type="password" name="password" style="width:250px;" placeholder="비밀번호"/>
+				</form>
+			</div>	
+			
+			<div class="modal-footer">
+				<div class="form-inline">
+					<label class="string optional" for="user_remember_me"><input id="user_remember_me" type="checkbox" name="remember_me" value="1" />비밀번호 기억하기 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>	
+					<input class="btn btn-primary" type="submit" name="commit" value="로그인"/>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Location</h3>
+                        <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Map</h3>
+												<p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Your Website 2014
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+		
+		<!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="{% static 'js/classie.js' %}"></script>
+    <script src="{% static 'js/cbpAnimatedHeader.js' %}"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+    <script src="{% static 'js/contact_me.js' %}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'js/freelancer.js' %}"></script>
+
+</body>
+
+</html>

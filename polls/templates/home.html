@@ -1,0 +1,269 @@
+{% extends 'base.html'%}
+
+{% load staticfiles %}
+
+{% block optional_javascript %} 		
+
+	<!-- Graph -->
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link href="{%static 'css/graph.css'%}" rel="stylesheet">
+	
+	<script>
+		$(document).ready(function(){
+			$('#confirm').on("click",function(){
+				x_value = $("#graph_x option:selected").text();
+				y_value = $("#graph_y option:selected").text();
+				startDate = $j("#startDate").datepicker("getDate")
+				endDate = $j("#endDate").datepicker("getDate")
+				$("input[class=checkbox]:checked").each(function(){
+					select_sensor = ($(this).val());
+					alert (select_sensor)
+				});
+				alert ((x_value) + (y_value) + (startDate)+ (endDate))
+			});
+		});
+	</script>
+
+
+	<!-- datepicker-->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>	
+	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+{% endblock %}
+
+{% block dropdown_navbar %}
+	<li class="dropdown">
+		<button href="#" class="dropdown-toggle btn btn-link navbar-btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"</span></button>
+		<ul class="dropdown-menu" role="menu" style="text-align : center">
+			<li class="page-scroll"><a href="#about">PROJECT 소개</a></li>
+			<li class="page-scroll"><a href="#portfolio">병해 요인</a></li>
+		</ul>
+	</li>
+	<li class="dropdown">
+		<button href="#" class="dropdown-toggle btn btn-link navbar-btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Graph<span class="caret"</span></button>
+		<ul class="dropdown-menu" style="text-align : center">
+			<li class="page-scroll"><a href="#sensor_graph">SENSOR</a></li>
+			<li class="page-scroll"><a href="#graph">graph</a></li>
+		</ul>
+	</li>
+{% endblock %}
+		
+{% block link_navbar %}						
+	<li><a href="/administer"><span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:175%"></span></a></li>
+{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<img class="img-responsive" src="{% static 'img/plant6.png' %}" alt="">	
+				<div class="intro-text">
+					<span class="name">Plant factory</span>
+					<hr class="star-light">
+					<span class="skills">teamlab2015</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<!-- About Section -->	
+<section id="about">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h2>About</h2>
+				<hr class="star-primary">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 text-center">
+				<p>IoT 기술과 통계 분석 기술을 사용하여 인삼재배 공정의 효율화를 추구하는 가천대학교 산업경영공학과와 응용통계학과 학생들의 프로젝트 입니다.</p>
+		<div class="row">
+			<p style="text-align: center">수집된 정보를 데이터 마이닝 기법을 활용하여 회귀분석을 통해 함수관계를 산출합니다.</p>
+			<div class="col-sm-4">
+				<h3 class="well" style="text-align: center">실험 설계</h3>
+				<p>토양 산도, 토양 습도, 토양 염분, 기온 등의 요인은 인삼 질병 발생률에 영향을 미친다고 가정합니다.</p>
+			</div>
+			<div class="col-sm-4 portfolio-item">
+				<h3 class="well" style="text-align: center">자료 분석</h3>
+				<p>데이터 수집 후 기초 통계량을 이용하여 단위를 표준화 합니다.</p>
+			</div>
+			<div class="col-sm-4 portfolio-item">
+				<h3 class="well" style="text-align: center">결과 해석</h3>
+				<p>함수 관계를 시각화하고 이해하여 인삼의 질병에 대한 설명과 최적 재배 조건 등을 예측, 피드백합니다.</p>
+			</div>
+			<div class="col-lg-8 col-lg-offset-2">
+				<h3 class="well" style="text-align:center">주요 통계 기법</h3>
+				<ul style="list-style-type:circle;">
+					<li/><p>주성분 분석 : 요인의 상관계수행렬을 이용하여 상관계수가 높은 변수끼리 묶어 주성분을 만들어 자원을 축소합니다.</p>
+					<li/><p>다중 회귀 분석 : 습도(X1), 토양 산도(X2), 토양 성분(X3), 기후(X4)를 이용하여 인삼 질병(Y)과의 함수관계를 밝혀냅니다.</p>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--sensor graph-->
+<section id="sensor_graph">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h2>SENSOR GRAPH</h2>
+				<hr class="star-primary">
+			</div>
+		</div>
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">	
+			<div class="row">
+				<svg id="lineGraph"></svg>
+			</div>
+			<div class="container">
+				<button type="submit" id="graph_data" class="import_data btn btn-default">기 온</button>
+				<button type="submit" id="test_data" class="import_data btn btn-primary">습 도</button>
+				<button type="submit" class="btn btn-default">토양 수분</button>
+				<button type="submit" class="btn btn-primary">조 도</button>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="container">
+				<form role="form">
+					<div class="checkbox">
+						<label><input type="checkbox" class="sensor" id="sensor_1" value="item1">SENSOR 1</label>
+					</div>	
+					<div class="checkbox">
+						<label><input type="checkbox" class="sensor" id="sensor_2" value="item2">SENSOR 2</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" class="sensor" id="sensor_3" value="item3">SENSOR 3</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">SENSOR 4</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">SENSOR 5</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">SENSOR 6</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">SENSOR 7</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">SENSOR 8</label>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="{% static 'js/lineGraph.js' %}"></script>
+
+</section>
+
+<!--graph-->
+<section id="graph">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h2>GRAPH</h2>
+				<hr class="star-primary">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 text-center">
+				<form role="form">
+					<div class="checkbox">
+						<label><input type="checkbox" class="checkbox" value="sensor_1">SENSOR 1</label>
+						<label><input type="checkbox" class="checkbox" value="sensor_2">SENSOR 2</label>
+						<label><input type="checkbox" class="checkbox" value="sensor_3">SENSOR 3</label>
+						<label><input type="checkbox" class="checkbox" value="sensor_4">SENSOR 4</label>
+					</div>
+				</form>
+				<span id="start_date">
+					<label>start &nbsp;:&nbsp;</label>
+					<input type="text" id="startDate" style="width:100px; text-align:center">
+						<script>
+							var $j = jQuery.noConflict();
+								$j("#startDate").datepicker();
+						</script>
+				</span>
+				<span id="end_date">
+					<label>&nbsp;end&nbsp;:&nbsp;</label>
+					<input type="text" id="endDate" style="width:100px; text-align:center">
+						<script>
+							var $j = jQuery.noConflict();
+								$j("#endDate").datepicker();
+						</script>
+				</span>
+				<span id="graph_x">
+					<label>&nbsp;가로축&nbsp;:&nbsp;</label>
+					<select class="btn btn-default btn-xs" id="graph_x">						
+						<option value="temperature" selected>기온</option>
+						<option value="humidity">습도</option>
+						<option value="soil_moisture">토양 수분</option>
+						<option value="intensity">조도</option>
+					</select>
+				</span>
+				<span id="graph_y">
+					<label>&nbsp;세로축&nbsp;:&nbsp;</label>
+					<select class="btn btn-default btn-xs" id="graph_y">
+						<option value="temperature" selected>기온</option>
+						<option value="humidity">습도</option>
+						<option value="soil_moisture">토양 수분</option>
+						<option value="intensity">조도</option>
+					</select>
+				</span>
+				<span id="confirm">
+					<label>&nbsp;적용&nbsp;:&nbsp;</label>
+					<input type="submit" id="confirm" class="btn btn-primary btn-xs" value="&nbsp;&nbsp;확&nbsp;&nbsp;인&nbsp;&nbsp;">
+				</span>
+				<div id="scatter">
+					<p style="font-size:5pt"></p>
+					<svg id="scatterGram"></svg>
+					<script type="text/javascript" src="{% static 'js/scatterGram.js' %}"></script>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--map-->
+<section class="success" id="map">
+	<div class = "container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+					<h2>Map</h2>
+					<hr class="star-light">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3"></div>
+				<div class="col-lg-6">
+				</div>
+			<div class="col-lg-3"></div>
+		</div>
+	</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h2>Contact Me</h2>
+				<hr class="star-primary">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
+
