@@ -1,4 +1,4 @@
-"""ginseng URL Configuration
+"ginseng URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -23,7 +23,7 @@ urlpatterns = patterns('',
 		url(r'^login/$', views.login, name="login"),	
 		url(r'^logout/$', views.logout, name="logout"),
 		url(r'^login_data/$', views.login_data, name="login_data"),
-		url(r'^index/', views.index, name='index'),
-		url(r'^graph_data/', views.graph_data, name="graph_data"),	
-		url(r'^test_data/', views.test_data, name="test_data"),
+#		url(r'^index/', views.index, name='index'),
+#		url(r'^graph_data/', views.graph_data, name="graph_data"),	
+#		url(r'^test_data/', views.test_data, name="test_data"),
 		)

@@ -32,10 +32,10 @@ def administer(request):
 	else:
 		return render(request, 'administer.html')
 
-def graph_data(request):
-	json_data = open('/home/hyeonju/workspace/ginseng/polls/templates/mydata.json').read()
-	return HttpResponse(json.dumps(json_data), content_type='application/json')
+#def graph_data(request):
+#	json_data = open('/home/hyeonju/workspace/ginseng/polls/templates/mydata.json').read()
+#	return HttpResponse(json.dumps(json_data), content_type='application/json')
 
-def test_data(request):
-	j_data = open('/home/hyeonju/workspace/ginseng/polls/templates/mydata.json').read()
-	return HttpResponse(json.dumps(j_data), content_type='application/json')
+#def test_data(request):
+#	j_data = open('/home/hyeonju/workspace/ginseng/polls/templates/mydata.json').read()
+#	return HttpResponse(json.dumps(j_data), content_type='application/json')
