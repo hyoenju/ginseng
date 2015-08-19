@@ -117,8 +117,15 @@
 				<hr class="star-primary">
 			</div>
 		</div>
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4">	
+		<div class="col-lg-8 col-lg-offset-2 text-center">	
+			<form role="form">
+				<div class="checkbox">
+					<label><input type="checkbox" class="sensor" id="sensor_1" value="item1">SENSOR 1</label>
+					<label><input type="checkbox" class="sensor" id="sensor_2" value="item2">SENSOR 2</label>
+					<label><input type="checkbox" class="sensor" id="sensor_3" value="item3">SENSOR 3</label>
+					<label><input type="checkbox" value="">SENSOR 4</label>
+				</div>
+			</form>
 			<div class="row">
 				<svg id="lineGraph"></svg>
 			</div>
@@ -129,39 +136,8 @@
 				<button type="submit" class="btn btn-primary">조 도</button>
 			</div>
 		</div>
-		<div class="col-lg-4">
-			<div class="container">
-				<form role="form">
-					<div class="checkbox">
-						<label><input type="checkbox" class="sensor" id="sensor_1" value="item1">SENSOR 1</label>
-					</div>	
-					<div class="checkbox">
-						<label><input type="checkbox" class="sensor" id="sensor_2" value="item2">SENSOR 2</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" class="sensor" id="sensor_3" value="item3">SENSOR 3</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">SENSOR 4</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">SENSOR 5</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">SENSOR 6</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">SENSOR 7</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">SENSOR 8</label>
-					</div>
-				</form>
-			</div>
-		</div>
 	</div>
 	<script type="text/javascript" src="{% static 'js/lineGraph.js' %}"></script>
-
 </section>
 
 <!--graph-->
