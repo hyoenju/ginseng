@@ -9,7 +9,7 @@ body {
 }
 
 p {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 p.small {
@@ -173,10 +173,6 @@ header .intro-text .skills {
 .navbar-inverse {
     border: 0;
 }
-
-p {
-	font-size: 10px;
-	}
 
 section {
     padding: 100px 0;
