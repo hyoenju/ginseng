@@ -23,7 +23,7 @@ SECRET_KEY = '-fn(=k)w+(*c&dhhe83h38=5%y(v3vc0x(#e7(z-p1s8q2afc0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True 
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'rest_framework',
 		'polls',
 		'polls.models',
 )
