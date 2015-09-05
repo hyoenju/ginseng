@@ -120,20 +120,20 @@
 		<div class="col-lg-8 col-lg-offset-2 text-center">	
 			<form role="form">
 				<div class="checkbox">
-					<label><input type="checkbox" class="sensor" id="sensor_1" value="item1">SENSOR 1</label>
-					<label><input type="checkbox" class="sensor" id="sensor_2" value="item2">SENSOR 2</label>
-					<label><input type="checkbox" class="sensor" id="sensor_3" value="item3">SENSOR 3</label>
-					<label><input type="checkbox" value="">SENSOR 4</label>
+					<label><input type="checkbox" class="sensor" id="temperature" value="temperature">temperature</label>
+					<label><input type="checkbox" class="sensor" id="soil_humidity" value="soil_humidity">soil_humidity</label>
+					<label><input type="checkbox" class="sensor" id="humidity" value="humidity">humidity</label>
+					<label><input type="checkbox" class="sensor" id="illumination" value="illumination">illumination</label>
 				</div>
 			</form>
 			<div class="row">
 				<svg id="lineGraph"></svg>
 			</div>
 			<div id="check_sensor">
-				<button type="submit" id="graph_data" class="import_data btn btn-default">기 온</button>
-				<button type="submit" id="test_data" class="import_data btn btn-primary">습 도</button>
-				<button type="submit" class="btn btn-default">토양 수분</button>
-				<button type="submit" class="btn btn-primary">조 도</button>
+				<button type="submit" id="temperature" class="import_data btn btn-default">기 온</button>
+				<button type="submit" id="humidity" class="import_data btn btn-primary">습 도</button>
+				<button type="submit" id="soil_humidity" class="import_data btn btn-default">토양 수분</button>
+				<button type="submit" id="illumination" class="import_data btn btn-primary">조 도</button>
 			</div>
 		</div>
 	</div>
@@ -141,7 +141,7 @@
 </section>
 
 <!--graph-->
-<section id="graph">
+<section id="graph" action="/get_selector">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
@@ -175,7 +175,7 @@
 								$j("#endDate").datepicker();
 						</script>
 				</span>
-				<span id="graph_x">
+				<span id="graph_x" name="graph_x">
 					<label>&nbsp;가로축&nbsp;:&nbsp;</label>
 					<select class="btn btn-default btn-xs" id="graph_x">						
 						<option value="temperature" selected>기온</option>
@@ -195,7 +195,7 @@
 				</span>
 				<span id="confirm">
 					<label>&nbsp;적용&nbsp;:&nbsp;</label>
-					<input type="submit" id="confirm" class="btn btn-primary btn-xs" value="&nbsp;&nbsp;확&nbsp;&nbsp;인&nbsp;&nbsp;">
+					<input type="submit" id="confirm" class="btn btn-primary btn-xs"  value="&nbsp;&nbsp;확&nbsp;&nbsp;인&nbsp;&nbsp;">
 				</span>
 				<div id="scatter">
 					<p style="font-size:5pt"></p>

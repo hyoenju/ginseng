@@ -20,11 +20,11 @@ svg{
 			fill: none; 
 			stroke: black;
 }
-.sensor_1 {stroke:black; 
-	opacity : 1;}
-.sensor_2 {stroke:red;}
-.sensor_3 {stroke:blue;}
-.sensor_4 {stroke:white; stroke-width: 3px;}
+.soil_humidity {stroke:black;}
+.temperature {stroke:red;}
+.humidity {stroke:blue;}
+.illumination {stroke:skyblue;}
+.sensor_0 {stroke:white; stroke-width: 3px;}
 
 /*산포도*/
 

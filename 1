@@ -5,7 +5,7 @@ d3.selectAll(".import_data").on("click", function(){
  	
 d3.json(data_url, function(error, data){
 	var dataSet = [ ];
-	alert (data)
+	
 	var svgEle = document.getElementById("lineGraph");
 	var svgWidth = window.getComputedStyle(svgEle, null).getPropertyValue("width");
 	var svgHeight = window.getComputedStyle(svgEle, null).getPropertyValue("height");
@@ -16,7 +16,7 @@ d3.json(data_url, function(error, data){
 	var scale = 2.0;
 	var rangeYear = 10;
 	var year = d3.extent(data, function(d){
-		return d.id;
+		return d.year;
 	});
 	var startYear = year[0];
 	var currentYear = 2000;
@@ -24,9 +24,8 @@ d3.json(data_url, function(error, data){
 	
 	pickupData(data, currentYear-startYear);
 	
-	drawScale();
 
-	//drawGraph(dataSet,"temperature" , "temperature", "linear");
+	drawScale();
 	
 	function drawGraph(dataSet, itemName, cssClassName, type){
 
@@ -89,21 +88,17 @@ d3.json(data_url, function(error, data){
 		d3.select("#lineGraph").selectAll("*").remove();	// SVG 요소 안 삭제
 	}
 	
-	
-//	drawGraph(dataSet,"temperature" , "temperature", "linear");
 	d3.selectAll(".sensor").on("click",function(){
 		var type = this.value;
-		alert (type)
 		var display = this.checked? true : false;
 		var name = this.id; 			
-		alert(name)
 		if (display==true){
 			drawGraph(dataSet, type , name , "linear");
 		}
 		else{
-		name = "sensor_0"
+			name = "sensor_0"
 			drawGraph(dataSet, type , name , "linear");
-		}		
+}		
 	});
 
 });

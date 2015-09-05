@@ -1,14 +1,18 @@
 from django.shortcuts import render,redirect
-from polls.models import User
+from polls.models import User, SensorData
 from polls.models import SensorData as SensorData_model 
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse_lazy
+from django.core.serializers.json import DjangoJSONEncoder
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
 import json
+from time import strftime
+from datetime import datetime
+
 def home(request):
 	return render(request, 'home.html')
 
@@ -16,7 +20,7 @@ def index(request):
 	return render(request, 'index.html')
 
 def login_data(request):
-	user= list(User.objects.values())
+	user= list(User.objects.values())	
 	return HttpResponse(json.dumps(user), content_type='application/json')
 
 def login(request):
@@ -55,11 +59,25 @@ class SensorData(APIView):
 			sensor_id = int(sensor_id)
 			)
 		data.save()
-		return HttpResponse("{result:Suscces}", content_type='application/json') 
-#def graph_data(request):
-#	json_data = open('/home/hyeonju/workspace/ginseng/polls/templates/mydata.json').read()
-#	return HttpResponse(json.dumps(json_data), content_type='application/json')
+		return HttpResponse("{result:Suscces}", content_type='application/json')
 
-#def test_data(request):
-#	j_data = open('/home/hyeonju/workspace/ginseng/polls/templates/mydata.json').read()
-#	return HttpResponse(json.dumps(j_data), content_type='application/json')
+def temperature_data(request):
+	sensor_id=1
+	temperature=list(SensorData_model.objects.filter(sensor_id=sensor_id).values('temperature','humidity','illumination','soil_humidity', 'id'))
+	return HttpResponse(json.dumps(temperature), content_type='application/json')
+
+def update_sensor(request):
+	id_1=1
+	id_2=4
+	sensor_date=list(SensorData_model.objects.filter(sensor_id=id_1).values('humidity','temperature'))
+
+	return HttpResponse(json.dumps(sensor_date), content_type='application/json')
+
+def graph_data(request):
+	json_data = open('/home/hyeonju/workspace/ginseng/polls/templates/mydata.json').read()
+	return HttpResponse(json.dumps(json_data), content_type='application/json')
+
+def get_selector(request):
+	selected_option = request.GET('graph_x', None)
+	print (selected_option)
+	return HttpResponse(selected_option)

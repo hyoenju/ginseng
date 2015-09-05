@@ -6,6 +6,21 @@
 <!-- switch -->
 <link rel="stylesheet" href="{% static 'css/jquery.onoff.css' %}" media="screen" />
 
+<script>
+	$(document).ready(function(){
+		$('.connect_sensor').on("click",function(){
+						
+				alert("hi")
+				$.ajax({
+					url: '/update_sensor',
+					dataType: 'text',
+					data : '',
+					success : function(data){
+		
+})
+	})
+</script>
+
 
 {% endblock %}
 			
@@ -38,7 +53,7 @@
 						<tr>
 							<td>sensor 1</td>
 							<td>2015/01/03</td>
-							<td><button type="button" class="sensor btn btn-primary btn-xs" id="sensor1" onclick="sensorSuccess()">확인하기</button></td>
+							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor1">확인하기</button></td>
 							<td><input type="checkbox" id="checkbox#1" checked />
 									<script src="{% static 'js/require.js' %}"></script>
 										<script>
@@ -53,7 +68,7 @@
 						<tr>
 							<td>sensor 2</td>
 							<td>2014/07/01</td>
-							<td><button type="button" class="sensor btn btn-primary btn-xs" id="sensor2" onclick="sensorFail()">확인하기</button>
+							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor2">확인하기</button>
 							</td>
 							<td>
 								<input type="checkbox" id="checkbox#2" checked />
@@ -69,7 +84,7 @@
 						<tr>
 							<td>sensor 3</td>
 							<td>2014/05/13</td>
-							<td><button type="button" class="btn btn-primary btn-xs" id="sensor3" onclick="sensorSuccess()">확인하기</button></td>
+							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor3" onclick="sensorSuccess()">확인하기</button></td>
 							<td><input type="checkbox" id="checkbox#3" checked />
 								<script>
 									require({
@@ -83,7 +98,7 @@
 						<tr>
 							<td>sensor 4</td>
 							<td>2015/07/31</td>
-							<td><button type="button" class="btn btn-primary btn-xs" id="sensor4" onclick="sensorFail()">확인하기</button></td>
+							<td><button type="button" class="connect_btn btn-primary btn-xs" id="sensor4" onclick="sensorFail()">확인하기</button></td>
 							<td><input type="checkbox" id="checkbox#4" checked />
 								<script>
 									require({

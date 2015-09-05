@@ -1,8 +1,8 @@
-d3.json("/graph_data", function(error, data){
-	data=JSON.parse(data)
- 	var dataSet=[]
+d3.json("/update_sensor/", function(error, data){
+	
+	var dataSet=[]
 	data.forEach(function(d,i){
-					dataSet.push([d.item1, d.item2]);
+					dataSet.push([d.temperature, d.humidity]);
 	});
 	//for(var i=0; i<data.length; i++){
 //					dataSet.push(data[i].item1, data[i].item2);
@@ -118,11 +118,11 @@ d3.json("/graph_data", function(error, data){
 
 	circleElements
 		.on("mouseover", function(d){
-			var x= parseInt(d[0]);
-			var y= parseInt(d[1]);
+			var x= parseFloat(d[0]);
+			var y= parseFloat(d[1]);
 			var data = d3.select(this).datum();
-			var dx = parseInt(data[0]);
-			var dy = parseInt(data[1]);
+			var dx = parseFloat(data[0]);
+			var dy = parseFloat(data[1]);
 			tooltip
 				.style("left", offsetX + x +"px")
 				.style("top", offsetY +30 + y +"px")
