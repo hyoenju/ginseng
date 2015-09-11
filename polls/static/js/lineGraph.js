@@ -1,11 +1,8 @@
 d3.selectAll(".import_data").on("click", function(){
 	graph = this.id
-	alert (graph)
 	data_url = "/"+graph
  	
 d3.json(data_url, function(error, data){
-	var dataSet = [ ];
-	alert (data)
 	var svgEle = document.getElementById("lineGraph");
 	var svgWidth = window.getComputedStyle(svgEle, null).getPropertyValue("width");
 	var svgHeight = window.getComputedStyle(svgEle, null).getPropertyValue("height");
@@ -16,18 +13,16 @@ d3.json(data_url, function(error, data){
 	var scale = 2.0;
 	var rangeYear = 10;
 	var year = d3.extent(data, function(d){
-		return d.id;
+		return d.created_at;
 	});
 	var startYear = year[0];
 	var currentYear = 2000;
 	var margin = svgWidth /(rangeYear - 1);
+
 	
 	pickupData(data, currentYear-startYear);
-	
 	drawScale();
 
-	//drawGraph(dataSet,"temperature" , "temperature", "linear");
-	
 	function drawGraph(dataSet, itemName, cssClassName, type){
 
 		var line = d3.svg.line()
@@ -58,7 +53,7 @@ d3.json(data_url, function(error, data){
 				  .orient("left")
 				)
 		var xScale = d3.time.scale()
-		  .domain([new Date(currentYear+"/1/1"), new Date((currentYear + rangeYear - 1)+"/1/1")])
+		  .domain([0,svgWidth])
 		  .range([0, svgWidth]) 
 		d3.select("#lineGraph")
 			  .append("g")
@@ -83,8 +78,8 @@ d3.json(data_url, function(error, data){
 	// JSON 데이터로부터 표시할 범위의 데이터셋을 추출하고 SVG 요소 안을 삭제
 	function pickupData(data, start){
 		dataSet = [ ];	// 데이터셋 삭제
-		for(var i=0; i<rangeYear; i++){	// 표시할 범위의 데이터를 입력
-			dataSet[i] = data[start + i];
+		for(var i=0; i<data.length; i++){	// 표시할 범위의 데이터를 입력
+			dataSet[i] = data[i];
 		}
 		d3.select("#lineGraph").selectAll("*").remove();	// SVG 요소 안 삭제
 	}
@@ -93,10 +88,8 @@ d3.json(data_url, function(error, data){
 //	drawGraph(dataSet,"temperature" , "temperature", "linear");
 	d3.selectAll(".sensor").on("click",function(){
 		var type = this.value;
-		alert (type)
 		var display = this.checked? true : false;
 		var name = this.id; 			
-		alert(name)
 		if (display==true){
 			drawGraph(dataSet, type , name , "linear");
 		}

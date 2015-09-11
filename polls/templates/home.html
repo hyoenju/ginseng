@@ -10,19 +10,60 @@
 	<link href="{%static 'css/graph.css'%}" rel="stylesheet">
 	
 	<script>
-		$(document).ready(function(){
-			$('#confirm').on("click",function(){
-				x_value = $("#graph_x option:selected").text();
-				y_value = $("#graph_y option:selected").text();
-				startDate = $j("#startDate").datepicker("getDate")
-				endDate = $j("#endDate").datepicker("getDate")
-				$("input[class=checkbox]:checked").each(function(){
-					select_sensor = ($(this).val());
-					alert (select_sensor)
-				});
-				alert ((x_value) + (y_value) + (startDate)+ (endDate))
-			});
-		});
+//$(document).ready(function(){
+//	$('#graph_scatter').on('submit',function(e){
+//		e.preventDefault();
+//	
+//		x_value = $("#graph_x option:selected").val();
+//		y_value = $("#graph_y option:selected").text();
+//		startDate = $j("#startDate").datepicker("getDate");
+//		endDate = $j("#endDate").datepicker("getDate");
+//
+//		$("input[class=checkbox]:checked").each(function(){
+//			select_sensor = ($(this).val());
+//			alert (select_sensor)
+//		})
+
+//		$.ajax({
+//			type     : "GET",
+//			cache    : false,
+//			url      : "/get_selector/", 
+//			data     : {x_value: $("#graph_x option:selected").val()},
+//			success  : function(response) {
+//				alert("hello")
+//			},
+//			error		 : function(response) {
+//			alert("failed")
+//			}
+
+//		});
+//	});
+//});
+//		$(document).ready(function(){
+//			$('#confirm').on("click",function(){
+//				$('#graph_scatter').preventDefault();
+//				x_value = $("#graph_x option:selected").val();
+//				y_value = $("#graph_y option:selected").text();
+//				startDate = $j("#startDate").datepicker("getDate");
+//				endDate = $j("#endDate").datepicker("getDate");
+//				alert (x_value)
+//				$("input[class=checkbox]:checked").each(function(){
+//					select_sensor = ($(this).val());
+//					alert (select_sensor)
+//				})
+//				$.ajax({
+//					url: "/get_selector/",
+//					type: "GET",
+//					data:	{x_value: $("#graph_x option:selected").val()},
+//					success: function(httpResponse){
+//						alert(httpResponse)
+//					},
+//					error: function(response){
+//						alert("failed")
+//					},
+//				});
+//			});
+//		});
 	</script>
 
 
@@ -130,10 +171,10 @@
 				<svg id="lineGraph"></svg>
 			</div>
 			<div id="check_sensor">
-				<button type="submit" id="temperature" class="import_data btn btn-default">기 온</button>
-				<button type="submit" id="humidity" class="import_data btn btn-primary">습 도</button>
-				<button type="submit" id="soil_humidity" class="import_data btn btn-default">토양 수분</button>
-				<button type="submit" id="illumination" class="import_data btn btn-primary">조 도</button>
+				<button type="submit" id="temperature" class="import_data btn btn-default">SENSOR 1</button>
+				<button type="submit" id="sensor_2" class="import_data btn btn-primary">SENSOR 2</button>
+				<button type="submit" id="sensor_3" class="import_data btn btn-default">SENSOR 3</button>
+				<button type="submit" id="sensor_4" class="import_data btn btn-primary">SENSOR 4</button>
 			</div>
 		</div>
 	</div>
@@ -141,7 +182,7 @@
 </section>
 
 <!--graph-->
-<section id="graph" action="/get_selector">
+<section id="graph"> 
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
@@ -151,52 +192,46 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 text-center">
-				<form role="form">
+				<form id="graph_scatter" role="form" method="post">
+				 {% csrf_token %}	
 					<div class="checkbox">
 						<label><input type="checkbox" class="checkbox" value="sensor_1">SENSOR 1</label>
 						<label><input type="checkbox" class="checkbox" value="sensor_2">SENSOR 2</label>
 						<label><input type="checkbox" class="checkbox" value="sensor_3">SENSOR 3</label>
 						<label><input type="checkbox" class="checkbox" value="sensor_4">SENSOR 4</label>
 					</div>
-				</form>
-				<span id="start_date">
-					<label>start &nbsp;:&nbsp;</label>
-					<input type="text" id="startDate" style="width:100px; text-align:center">
+					<label>start &nbsp;:&nbsp;
+						<input type="text" id="startDate" style="width:100px; text-align:center">
 						<script>
 							var $j = jQuery.noConflict();
-								$j("#startDate").datepicker();
+							$j("#startDate").datepicker();
 						</script>
-				</span>
-				<span id="end_date">
-					<label>&nbsp;end&nbsp;:&nbsp;</label>
-					<input type="text" id="endDate" style="width:100px; text-align:center">
+					</label>
+					<label>&nbsp;end&nbsp;:&nbsp;
+						<input type="text" id="endDate" style="width:100px; text-align:center">
 						<script>
 							var $j = jQuery.noConflict();
-								$j("#endDate").datepicker();
-						</script>
-				</span>
-				<span id="graph_x" name="graph_x">
+							$j("#endDate").datepicker();
+							</script>
+					</label>
 					<label>&nbsp;가로축&nbsp;:&nbsp;</label>
-					<select class="btn btn-default btn-xs" id="graph_x">						
-						<option value="temperature" selected>기온</option>
-						<option value="humidity">습도</option>
-						<option value="soil_moisture">토양 수분</option>
-						<option value="intensity">조도</option>
-					</select>
-				</span>
-				<span id="graph_y">
-					<label>&nbsp;세로축&nbsp;:&nbsp;</label>
-					<select class="btn btn-default btn-xs" id="graph_y">
-						<option value="temperature" selected>기온</option>
-						<option value="humidity">습도</option>
-						<option value="soil_moisture">토양 수분</option>
-						<option value="intensity">조도</option>
-					</select>
-				</span>
-				<span id="confirm">
-					<label>&nbsp;적용&nbsp;:&nbsp;</label>
-					<input type="submit" id="confirm" class="btn btn-primary btn-xs"  value="&nbsp;&nbsp;확&nbsp;&nbsp;인&nbsp;&nbsp;">
-				</span>
+						<select class="btn btn-default btn-xs" id="graph_x">						
+							<option value="temperature" selected>기온</option>
+							<option value="humidity">습도</option>
+							<option value="soil_humidity">토양 수분</option>
+							<option value="illumination">조도</option>
+						</select>
+					</label>
+					<label>&nbsp;세로축&nbsp;:&nbsp;
+						<select class="btn btn-default btn-xs" id="graph_y">
+							<option value="temperature" selected>기온</option>
+							<option value="humidity"> 습도</option>
+							<option value="soil_humidity">토양 수분</option>
+							<option value="illumination">조도</option>
+						</select>
+					</label>
+					<label>&nbsp;적용&nbsp;:&nbsp; <input type="submit" id="confirm" class="btn btn-primary btn-xs" value="&nbsp;&nbsp;확&nbsp;&nbsp;인&nbsp;&nbsp;"></label>
+				</form>	
 				<div id="scatter">
 					<p style="font-size:5pt"></p>
 					<svg id="scatterGram"></svg>

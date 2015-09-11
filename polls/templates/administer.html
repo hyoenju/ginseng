@@ -12,13 +12,14 @@
 						
 				alert("hi")
 				$.ajax({
-					url: '/update_sensor',
+					url: '/graph_data/',
 					dataType: 'text',
 					data : '',
 					success : function(data){
-		
-})
-	})
+}		
+});
+	});
+		});
 </script>
 
 
@@ -52,7 +53,7 @@
 						</tr>
 						<tr>
 							<td>sensor 1</td>
-							<td>2015/01/03</td>
+							<td>{{sensor_1}}</td>
 							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor1">확인하기</button></td>
 							<td><input type="checkbox" id="checkbox#1" checked />
 									<script src="{% static 'js/require.js' %}"></script>
@@ -67,7 +68,7 @@
 						</tr>
 						<tr>
 							<td>sensor 2</td>
-							<td>2014/07/01</td>
+							<td>{{sensor_2}}</td>
 							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor2">확인하기</button>
 							</td>
 							<td>
@@ -83,7 +84,7 @@
 						</tr>
 						<tr>
 							<td>sensor 3</td>
-							<td>2014/05/13</td>
+							<td>{{sensor_3}}</td>
 							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor3" onclick="sensorSuccess()">확인하기</button></td>
 							<td><input type="checkbox" id="checkbox#3" checked />
 								<script>
@@ -97,7 +98,7 @@
 						</tr>
 						<tr>
 							<td>sensor 4</td>
-							<td>2015/07/31</td>
+							<td>{{sensor_4}}</td>
 							<td><button type="button" class="connect_btn btn-primary btn-xs" id="sensor4" onclick="sensorFail()">확인하기</button></td>
 							<td><input type="checkbox" id="checkbox#4" checked />
 								<script>

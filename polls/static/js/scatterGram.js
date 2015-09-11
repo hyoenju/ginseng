@@ -1,13 +1,174 @@
+$(document).ready(function(){
+	$('#graph_scatter').on('submit',function(e){
+		e.preventDefault();
+		x_value = $("#graph_x option:selected").val();
+		y_value = $("#graph_y option:selected").val();
+		startDate = $j("#startDate").datepicker("getDate");
+		endDate = $j("#endDate").datepicker("getDate");
+		$("input[class=checkbox]:checked").each(function(){
+			select_sensor = ($(this).val());
+			alert (select_sensor)
+			})
+		$.ajax({
+			type     : "GET",
+			cache    : false,
+			url      : "/get_selector/", 
+			data     : {'x_value': $("#graph_x option:selected").val(),
+			'startDate': $j("#startDate").datepicker("getDate")},
+			success  : function(response) {
+				
 d3.json("/update_sensor/", function(error, data){
 	
 	var dataSet=[]
-	data.forEach(function(d,i){
+	if (x_value == "temperature" && y_value == "temperature"){
+		data.forEach(function(d,i){
+					dataSet.push([d.temperature, d.temperature]);
+		});
+	}else if (x_value == "temperature" && y_value == "humidity"){
+		data.forEach(function(d,i){
 					dataSet.push([d.temperature, d.humidity]);
-	});
-	//for(var i=0; i<data.length; i++){
-//					dataSet.push(data[i].item1, data[i].item2);
-//	}
+		});
+	}else if (x_value == "temperature" && y_value == "soil_humidity"){
+		data.forEach(function(d,i){
+					dataSet.push([d.temperature, d.soil_humidity]);
+		});
+	}else if (x_value == "temperature" && y_value == "illumination"){
+		data.forEach(function(d,i){
+					dataSet.push([d.temperature, d.illumination]);
+		});
+	}else if (x_value == "humidity" && y_value == "temperature"){
+		data.forEach(function(d,i){
+					dataSet.push([d.humidity, d.temperature]);
+		});
+	}else if (x_value == "humidity" && y_value == "humidity"){
+		data.forEach(function(d,i){
+					dataSet.push([d.humidity, d.humidity]);
+		});
+	}else if (x_value == "humidity" && y_value == "soil_humidity"){
+		data.forEach(function(d,i){
+					dataSet.push([d.humidity, d.soil_humidity]);
+		});
+	}else if (x_value == "humidity" && y_value == "illumination"){
+		data.forEach(function(d,i){
+					dataSet.push([d.humidity, d.illumination]);
+		});
+	}else if (x_value == "soil_humidity" && y_value == "temperature"){
+		data.forEach(function(d,i){
+					dataSet.push([d.soil_humidity, d.temperature]);
+		});
+	}else if (x_value == "soil_humidity" && y_value == "humidity"){
+		data.forEach(function(d,i){
+					dataSet.push([d.soil_humidity, d.humidity]);
+		});
+	}else if (x_value == "soil_humidity" && y_value == "soil_humidity"){
+		data.forEach(function(d,i){
+					dataSet.push([d.soil_humidity, d.soil_humidity]);
+		});
+	}else if (x_value == "soil_humidity" && y_value == "illumination"){
+		data.forEach(function(d,i){
+					dataSet.push([d.soil_humidity, d.illumination]);
+		});
+	}else if (x_value == "illumination" && y_value == "temperature"){
+		data.forEach(function(d,i){
+					dataSet.push([d.illumination, d.temperature]);
+		});
+	}else if (x_value == "illumination" && y_value == "humidity"){
+		data.forEach(function(d,i){
+					dataSet.push([d.illumination, d.humidity]);
+		});
+	}else if (x_value == "illumination" && y_value == "soil_humidity"){
+		data.forEach(function(d,i){
+					dataSet.push([d.illumination, d.soil_humidity]);
+		});
+	}else if(x_value == "illumination" && y_value == "illumination"){
+		data.forEach(function(d,i){
+					dataSet.push([d.illumination, d.illumination]);
+		});
+	};
 	
+//	switch (x_value, y_value){
+//					case ("temperature", "temperature"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.temperature, d.temperature]);
+//						});
+//						break;
+//					case ("temperature", "humidity"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.temperature, d.humidity]);
+//						});
+//						break;
+//					case ("temperature", "soil_humidity"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.temperature, d.soil_humidity]);
+//						});
+//						break;
+//					case ("temperature", "illumination"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.temperature, d.illumination]);
+//						});
+//						break;
+//					case ("humidity", "temperature"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.humidity, d.temperature]);
+//					});
+//						break;
+//				case ("humidity", "humidity"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.humidity, d.humidity]);
+//						});
+//						break;
+//					case ("humidity", "soil_humidity"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.humidity, d.soil_humidity]);
+//						});
+//						break;
+//					case ("humidity", "illumination"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.humidity, d.illumination]);
+//						});
+//						break;
+//					case ("soil_humidity", "temperature"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.soil_humidity, d.temperature]);
+//						});
+//						break;
+//					case ("soil_humidity", "humidity"):
+//					data.forEach(function(d,i){
+//							dataSet.push([d.soil_humidity, d.humidity]);
+//						});
+//						break;
+//					case ("soil_humidity", "soil_humidity"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.soil_humidity, d.soil_humidity]);
+//						});
+//						break;
+//					case ("soil_humidity", "illumination"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.illumination, d.illumination]);
+//					});
+//						break;
+//					case ("illumination", "temperature"):
+//						data.forEach(function(d,i){
+//						dataSet.push([d.illumination, d.temperature]);
+//						});
+//						break;
+//					case ("illumination", "humidity"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.illumination, d.humidity]);
+//						});
+//						break;
+//					case ("illumination", "soil_humidity"):
+//						data.forEach(function(d,i){
+//						dataSet.push([d.illumination, d.soil_humidity]);
+//						});
+//						break;
+//					case ("illumination", "illumination"):
+//						data.forEach(function(d,i){
+//							dataSet.push([d.illumination, d.illumination]);
+//					});
+//						break;
+//	};
+
 	var svgEle = document.getElementById("scatterGram");
 	var svgWidth = window.getComputedStyle(svgEle, null).getPropertyValue("width");
 	var svgHeight = window.getComputedStyle(svgEle, null).getPropertyValue("height");
@@ -20,8 +181,6 @@ d3.json("/update_sensor/", function(error, data){
 	var yAxisHeight = svgHeight - 20;
 	var xAxisWidth = svgWidth - 40;
 	var svg = d3.select("#scatterGram");
-	
-	//var dataSet = [[30,40],[120, 115],[125,90],[150,160],[300,170],[60,40],[140,145],[165,110],[200,260],[280,160]];
 	
 	drawScale();
 	var circleElements = svg
@@ -132,4 +291,13 @@ d3.json("/update_sensor/", function(error, data){
 		.on("mouseout", function(){
 			tooltip.style("visibility", "hidden")
 		})
+});
+
+			},
+			error		 : function(response) {
+				alert("failed")
+			}
+
+		});
+	});
 });
