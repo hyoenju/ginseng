@@ -1,7 +1,7 @@
 d3.selectAll(".import_data").on("click", function(){
 	graph = this.id
 	data_url = "/"+graph
- 	
+
 d3.json(data_url, function(error, data){
 	var svgEle = document.getElementById("lineGraph");
 	var svgWidth = window.getComputedStyle(svgEle, null).getPropertyValue("width");
@@ -20,7 +20,7 @@ d3.json(data_url, function(error, data){
 	var margin = svgWidth /(rangeYear - 1);
 
 	
-	pickupData(data, currentYear-startYear);
+	pickupData(data);
 	drawScale();
 
 	function drawGraph(dataSet, itemName, cssClassName, type){
@@ -65,7 +65,7 @@ d3.json(data_url, function(error, data){
 				  .orient("bottom")
 				  .ticks(10)
 				  .tickFormat(function(d, i){
-						var fmtFunc = d3.time.format("%Y년%m월");
+						var fmtFunc = d3.time.format("%");
 						return fmtFunc(d);
 					})
 				)
@@ -75,13 +75,12 @@ d3.json(data_url, function(error, data){
 			  .attr("dy", "-0.4em")	
 			  .style("text-anchor", "start")
 	}
-	// JSON 데이터로부터 표시할 범위의 데이터셋을 추출하고 SVG 요소 안을 삭제
-	function pickupData(data, start){
-		dataSet = [ ];	// 데이터셋 삭제
-		for(var i=0; i<data.length; i++){	// 표시할 범위의 데이터를 입력
+	function pickupData(data){
+		dataSet = [ ];	
+		for(var i=0; i<data.length; i++){
 			dataSet[i] = data[i];
 		}
-		d3.select("#lineGraph").selectAll("*").remove();	// SVG 요소 안 삭제
+		d3.select("#lineGraph").selectAll("*").remove();
 	}
 	
 	

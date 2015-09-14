@@ -5,17 +5,19 @@ $(document).ready(function(){
 		y_value = $("#graph_y option:selected").val();
 		startDate = $j("#startDate").datepicker("getDate");
 		endDate = $j("#endDate").datepicker("getDate");
+		var select_sensors=[]
 		$("input[class=checkbox]:checked").each(function(){
 			select_sensor = ($(this).val());
-			alert (select_sensor)
+			select_sensors.push(select_sensor)
 			})
 		$.ajax({
 			type     : "GET",
 			cache    : false,
 			url      : "/get_selector/", 
-			data     : {'x_value': $("#graph_x option:selected").val(),
-			'startDate': $j("#startDate").datepicker("getDate")},
+			data     : {'startDate': $j("#startDate").datepicker("getDate"),
+			'endDate': $j("#endDate").datepicker("getDate")},
 			success  : function(response) {
+
 				
 d3.json("/update_sensor/", function(error, data){
 	

@@ -3,23 +3,24 @@
 {% load staticfiles %}
 
 {% block optional_javascript %}	
-<!-- switch -->
-<link rel="stylesheet" href="{% static 'css/jquery.onoff.css' %}" media="screen" />
+<script src="{% static 'js/require.js' %}"></script>
 
 <script>
 	$(document).ready(function(){
-		$('.connect_sensor').on("click",function(){
-						
-				alert("hi")
-				$.ajax({
-					url: '/graph_data/',
-					dataType: 'text',
-					data : '',
-					success : function(data){
-}		
-});
-	});
+		$('.connect_sensor').on("click",function(e){
+			e.preventDefault();
+			sensor_name=this.id
+			$.ajax({
+				url			: '/check_status/',
+				cache		: false,
+				type		: "GET",
+				data		: {'sensor_name':this.id},
+				success	: function(response){
+					alert(response)
+					}		
+				});
 		});
+	});
 </script>
 
 
@@ -42,73 +43,33 @@
 		</div>
 					
 		<div class="container">
-			<div class="col-lg-8 col-lg-offset-2">
+			<div class="col-lg-8 col-lg-offset-2 text-center">
 				<table class="table table-bordered">
 					<thead>
 						<tr class="active">
-							<th>name</th>
-							<th>마지막 업데이트</th>
-							<th>연결 확인</th>
-							<th>On / Off</th>
+							<th style="text-align:center">name</th>
+							<th style="text-align:center">마지막 업데이트</th>
+							<th style="text-align:center">연결 확인</th>
 						</tr>
 						<tr>
 							<td>sensor 1</td>
 							<td>{{sensor_1}}</td>
 							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor1">확인하기</button></td>
-							<td><input type="checkbox" id="checkbox#1" checked />
-									<script src="{% static 'js/require.js' %}"></script>
-										<script>
-											require({
-												paths: { jquery: "{% static 'js/jquery'%}" }
-													}, [ 'jquery', "{% static 'js/jquery.onoff.js'%}"] , function( $ ) {
-													$('input[id=checkbox#1]').onoff();
-											});
-										</script>
-							</td>
 						</tr>
 						<tr>
 							<td>sensor 2</td>
 							<td>{{sensor_2}}</td>
-							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor2">확인하기</button>
-							</td>
-							<td>
-								<input type="checkbox" id="checkbox#2" checked />
-								<script>
-									require({
-										paths: { jquery: "{% static 'js/jquery'%}" }
-										}, [ 'jquery',"{% static 'js/jquery.onoff.js' %}"], function( $ ) {
-										$('input[id=checkbox#2]').onoff();
-									});
-								</script>
-							</td>
+							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor2">확인하기</button></td>
 						</tr>
 						<tr>
 							<td>sensor 3</td>
 							<td>{{sensor_3}}</td>
-							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor3" onclick="sensorSuccess()">확인하기</button></td>
-							<td><input type="checkbox" id="checkbox#3" checked />
-								<script>
-									require({
-										paths: { jquery: "{% static 'js/jquery'%}" }
-											}, [ 'jquery', "{% static 'js/jquery.onoff.js' %}"], function( $ ) {
-											$('input[id=checkbox#3]').onoff();
-									});
-								</script>
-							</td>
+							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor3">확인하기</button></td>
 						</tr>
 						<tr>
 							<td>sensor 4</td>
 							<td>{{sensor_4}}</td>
-							<td><button type="button" class="connect_btn btn-primary btn-xs" id="sensor4" onclick="sensorFail()">확인하기</button></td>
-							<td><input type="checkbox" id="checkbox#4" checked />
-								<script>
-									require({
-										paths: { jquery: "{% static 'js/jquery' %}"}
-										}, [ 'jquery', "{% static 'js/jquery.onoff.js' %}"], function( $ ) {
-										$('input[id=checkbox#4]').onoff();
-									});
-								</script>
-							</td>
+							<td><button type="button" class="connect_sensor btn btn-primary btn-xs" id="sensor4">확인하기</button></td>
 						</tr>
 					</thead>
 				</table>
@@ -117,15 +78,6 @@
 	</div>
 </section>
 		
-<!--sensor check-->
-<script>
-	function sensorSuccess(){	
-		alert('센서 연결 확인되었습니다.');
-	}
-	function sensorFail(){
-		alert('센서 연결이 확인되지 않습니다.');
-	}
-</script>
 <script src="{% static 'js/require.js' %}"></script>
 
 {% endblock %}

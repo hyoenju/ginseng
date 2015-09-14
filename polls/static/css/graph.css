@@ -2,7 +2,7 @@
 svg{
 	width: 380px; 
 	height:300px; 
-	border: 1px solid black;}
+	border: 4px solid darkgray;}
 
 .axis text {
 				font-family: sans-serif;
@@ -20,10 +20,10 @@ svg{
 			fill: none; 
 			stroke: black;
 }
-.soil_humidity {stroke:black;}
-.temperature {stroke:red;}
-.humidity {stroke:blue;}
-.illumination {stroke:skyblue;}
+.soil_humidity {stroke:black; stroke-width:2px;}
+.temperature {stroke:red; stroke-width:2px;}
+.humidity {stroke:blue; stroke-width:2px;}
+.illumination {stroke:skyblue; stroke-width:2px;}
 .sensor_0 {stroke:white; stroke-width: 3px;}
 
 /*산포도*/
