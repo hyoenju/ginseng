@@ -173,11 +173,24 @@ def check_status(request):
 	return HttpResponse(text)
 
 def get_selector(request):
-	start_date = request.GET.get('startDate')
-	end_date = request.GET.get('endDate')
-	#start_data = strptime(start_date, '%Y-%m-%d %H:%M:%S')
-	print (type(start_date))
-	#print (type(start_data),start_data)
-	#timestamp = time.mktime(time_tuple)
-	sensor_date=(list(SensorData_model.objects.values('humidity','temperature',"soil_humidity","illumination")))
+	start_date = request.POST.get('startDate')
+	end_date = request.POST.get('endDate')
+
+	start_data = datetime.strptime(start_date[:24].strip(), '%a %b %d %Y %H:%M:%S')
+	end_data  = datetime.strptime(end_date[:24].strip(), '%a %b %d %Y %H:%M:%S')
+
+#	sensor_date=list(SensorData_model.objects.values(
+#		'humidity','temperature',"soil_humidity","illumination"))
+	# YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]
+	print(type(start_data))
+	str_start_date = start_data.strftime("%Y-%m-%d %H:%M:%S")
+	str_end_date = end_data.strftime("%Y-%m-%d %H:%M:%S")
+
+	sensor_date=(list(SensorData_model.objects.filter(
+		created_at__range=(str_start_date, str_end_date)).values(
+			'humidity','temperature',"soil_humidity","illumination")))
+
+	print(sensor_date)
+
+
 	return HttpResponse(json.dumps(sensor_date), content_type='application/json')

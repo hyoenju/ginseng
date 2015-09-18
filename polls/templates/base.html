@@ -45,7 +45,6 @@
 		
 						var password_key = "password"
 						var password_value = json_data[password_key]
-						alert (password_value)
 						if(id != id_value){
 							alert("아이디 불일치");
 						}
@@ -120,19 +119,13 @@
                         <h3>Around the Web</h3>
                         <ul class="list-inline">
                             <li>
-                                <a href="" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                <a class="btn-social btn-outline"><i class="fa fa-fw fa-facebook" onclick="window.open('https://www.facebook.com/PythonWGachonIE')";></i></a>
                             </li>
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                                <a class="btn-social btn-outline"><i class="fa fa-fw fa-github-alt" onclick="window.open('https://github.com/hyoenju/ginseng')"></i></a>
                             </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+														<li>
+                                <a class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin" onclick="window.open('http://cs50.gachon.ac.kr')"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -180,7 +173,6 @@
 	</div>
 	<div class="modal-footer">
 		<div class="form-inline">
-			<label class="string optional" for="user_remember_me"><input id="user_remember_me" type="checkbox" name="remember_me" value="1" />비밀번호 기억하기 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
 			<input class="btn btn-primary" type="submit" id="submit"  value="로그인"/>
 		</div>
 	</div>
