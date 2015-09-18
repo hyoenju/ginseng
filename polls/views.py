@@ -173,8 +173,8 @@ def check_status(request):
 	return HttpResponse(text)
 
 def get_selector(request):
-	start_date = request.POST.get('startDate')
-	end_date = request.POST.get('endDate')
+	start_date = request.GET.get('startDate')
+	end_date = request.GET.get('endDate')
 
 	start_data = datetime.strptime(start_date[:24].strip(), '%a %b %d %Y %H:%M:%S')
 	end_data  = datetime.strptime(end_date[:24].strip(), '%a %b %d %Y %H:%M:%S')

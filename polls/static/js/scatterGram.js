@@ -11,14 +11,14 @@ $(document).ready(function(){
 			select_sensors.push(select_sensor)
 			})
 		$.ajax({
-			type     : "POST",
+			type     : "GET",
 			cache    : false,
 			url      : "/get_selector/", 
 			data     : {'startDate': $j("#startDate").datepicker("getDate"),
 			'endDate': $j("#endDate").datepicker("getDate")},
 			success  : function(response) {
 					
-d3.json(response, function(error, data){
+d3.json("/update_sensor/", function(error, data){
 	
 	var dataSet=[]
 	if (x_value == "temperature" && y_value == "temperature"){
