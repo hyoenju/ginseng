@@ -175,14 +175,16 @@ def check_status(request):
 def get_selector(request):
 	start_date = request.GET.get('startDate')
 	end_date = request.GET.get('endDate')
-
+	sensor = request.GET.get('sensor')
+	
+	print("hi"+sensor)
 	start_data = datetime.strptime(start_date[:24].strip(), '%a %b %d %Y %H:%M:%S')
 	end_data  = datetime.strptime(end_date[:24].strip(), '%a %b %d %Y %H:%M:%S')
 
 #	sensor_date=list(SensorData_model.objects.values(
 #		'humidity','temperature',"soil_humidity","illumination"))
 	# YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]
-	print(type(start_data))
+	#print(type(start_data))
 	str_start_date = start_data.strftime("%Y-%m-%d %H:%M:%S")
 	str_end_date = end_data.strftime("%Y-%m-%d %H:%M:%S")
 
@@ -190,7 +192,7 @@ def get_selector(request):
 		created_at__range=(str_start_date, str_end_date)).values(
 			'humidity','temperature',"soil_humidity","illumination")))
 
-	print(sensor_date)
+	#print(sensor_date)
 
 
 	return HttpResponse(json.dumps(sensor_date), content_type='application/json')
