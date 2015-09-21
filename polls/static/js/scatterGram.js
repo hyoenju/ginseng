@@ -5,20 +5,20 @@ $(document).ready(function () {
         y_value = $("#graph_y option:selected").val();
         startDate = $j("#startDate").datepicker("getDate");
         endDate = $j("#endDate").datepicker("getDate");
-        var _sensor = []
-        $("input[class=checkbox]:checked").each(function () {
+        //var _sensor = []
+        //$("input[class=checkbox]:checked").each(function () {
+				//
+        //    select_sensor = ($(this).val());
 
-            select_sensor = ($(this).val());
-
-            _sensor.push(select_sensor)
-        })
-
+        //    _sensor.push(select_sensor)
+        //})
+				//alert(_sensor)
         $.ajax({
             type: "GET",
             cache: false,
             url: "/get_selector/",
             data: {
-                'sensor': _sensor,
+                //'sensor': _sensor,
                 'startDate': $j("#startDate").datepicker("getDate"),
                 'endDate': $j("#endDate").datepicker("getDate"),
             },
